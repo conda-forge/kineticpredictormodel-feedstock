@@ -12,16 +12,16 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - setuptools >=42
     - wheel
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - numpy >=1.20
     - matplotlib-base >=3.5
     - pandas
@@ -32,6 +32,8 @@ requirements:
     - rdkit
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - KPM
 
